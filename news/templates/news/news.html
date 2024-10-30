@@ -1,0 +1,47 @@
+{% extends "main.html" %}
+{% load static %}
+{% block content %}
+
+<div class="news">
+
+
+    <div class="news-search">
+        <h1>SEARCH FOR <span>NEWS</span></h1>
+
+    <form>
+        <div class="search-container">
+            <input type="text" name="q" class="search-box" placeholder="Search...">
+            <button class="search-btn">Search</button>
+        </div>
+    </form>
+    
+    </div>
+
+ <!--blog start -->
+    <div class="container">
+        <div class="blog-content">
+
+{% for new in news %}
+
+                    <div class="single-blog-item">
+                        <div class="single-blog-item-img">
+                            <img src="{{new.image.url}}">
+                        </div>
+                        <div class="single-blog-item-txt">
+                            <h2><a href="{{new.link}}">{{new.title}}</a></h2>
+                            <hr>
+                            <h4>posted <span>by</span> <a href="#">{{new.admin_name}}</a>{{new.date}}</h4>
+                            <p> {{new.description|linebreaksbr}} </p>
+                            <hr>
+                        </div>
+                    </div>
+
+                {% endfor %}
+
+        </div>
+    </div>
+    <!--blog end -->
+
+</div>
+
+{% endblock content %}
