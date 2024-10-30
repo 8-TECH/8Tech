@@ -1,0 +1,76 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+  <body class="home">
+    <div class="academics">
+      <form action="">
+        <div class="search-container">
+            <input type="text" name="q" class="search-box" placeholder="Search...">
+            <button class="search-btn">Search</button>
+        </div>
+      </form>
+
+
+      <div class="school">
+        <div class="accordion">
+
+          {% for school in schools %}
+          <!-- School start-->
+            <div class="accordion-item">
+                <div class="accordion-header">{{ school.school_name }}</div>
+                <div class="accordion-content">
+                    <div class="nested-accordion">
+        
+                      {% for department in departments %}
+                      {% if department.school == school %}
+                   <!-- Department start-->
+                        <div class="nested-accordion-item">
+                            <div class="nested-accordion-header">{{ department.department_name }}</div>
+                            <div class="nested-accordion-content">
+                           {% for course in courses %}
+                              {% if course.department == department %}
+                                <p><a href="{% url 'course' course.course_name %}">{{ course.course_name }}</a></p>
+                              {% endif %}
+                            {% endfor %}
+                            </div>
+                        </div>
+                   <!-- Department end-->
+                   {% endif %}
+                   {% endfor %}
+        
+                    </div>
+                </div>
+            </div>
+          <!-- School end -->
+          {% endfor %}
+        
+        </div>
+      </div>
+
+
+    <script>
+       // Function to toggle accordion content
+function toggleAccordionContent(header, content) {
+    header.addEventListener('click', function () {
+        content.style.display = content.style.display === 'block' ? 'none' : 'block';
+        header.classList.toggle('active');
+    });
+}
+
+// Main Accordion
+document.querySelectorAll('.accordion-item').forEach(item => {
+    const header = item.querySelector('.accordion-header');
+    const content = item.querySelector('.accordion-content');
+    toggleAccordionContent(header, content);
+});
+
+// Nested Accordion
+document.querySelectorAll('.nested-accordion-item').forEach(item => {
+    const header = item.querySelector('.nested-accordion-header');
+    const content = item.querySelector('.nested-accordion-content');
+    toggleAccordionContent(header, content);
+});
+
+    </script>
+  </body>
+{% endblock %}
