@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Get notes and pastpapers">
+        <meta name="keywords" content="8Tech,8,8Tech Solutions, 8 Tech, 8 Tech Solutions,Humphrey Tuva, Past papers, Notes, Clubs, KU">
+        <meta name="author" content="Humphrey Tuva">
+        <title>8Tech Solutions</title>
+        <link rel="stylesheet" type="text/css">
+        <link rel="stylesheet" type="text/css" href="{% static 'styles/main.css' %}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    </head>
+    <body>
+
+        {% include 'navbar.html' %}
+
+        {% block content %}
+
+
+        
+        {% endblock content %}
+
+        {% include "footer.html" %}
+    </body>
+</html>
